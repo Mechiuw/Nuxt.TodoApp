@@ -23,4 +23,11 @@
         }
     }
 </script>
-<style></style>
+<style>
+.content{
+    width: 100%;
+    height: 100%;
+    background-color: lightblue;
+    color: white;
+}
+</style>

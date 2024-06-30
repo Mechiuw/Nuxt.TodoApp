@@ -1,6 +1,6 @@
 <template>
 <main>
-  <div>
+  <div class="main-container-index">
     <h1>TASK BOARD</h1>
     <p>create list of tasks</p>
 
@@ -8,10 +8,12 @@
     type="text" 
     placeholder="insert task" 
     v-model="newTask" 
-    @keypress.enter="addTask"/>
+    @keypress.enter="addTask"
+    />
 
     <button @click="addTask" class="btn btn-dark">Submit</button>
   </div>
+
   <div class="tasks">
     <Task 
     v-for="(task,i) in $store.tasks"
@@ -22,13 +24,22 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import Task from '../components/Task.vue';
+
 export default {
+  components:{
+    Task : Task
+  }, 
   data(){
     return {
       newTask : ''
     }
   },
-   methods:{
+  computed:{
+    ...mapState(['tasks'])
+  },
+  methods:{
     addTask(){
       if(this.newTask){
         this.$store.commit('ADD_TASK',this.newTask)
@@ -38,3 +49,23 @@ export default {
    }
 }
 </script>
+
+<style>
+  main{
+    background-color: navy;
+    color: white;
+    height:100vh ;
+    display: flex;
+    justify-content: center;
+    align-content:center;
+  }
+  .main-container-index{
+    text-align: center;
+  }
+  .tasks{
+    width: 20%;
+    height: 20%;
+    background-color: lightblue;
+    color: white;
+  }
+</style>
