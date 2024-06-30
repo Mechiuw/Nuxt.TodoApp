@@ -13,8 +13,11 @@ export const state = () => ({
       }
     },
     TOGGLE_TASK(state, task) {
-        
-      task.done = !task.done; 
+       const foundTask = state.tasks.find(t => t === task);
+       if(foundTask){
+        foundTask.done = !foundTask.done;
+        console.log(foundTask.done);
+       }
     }
   };
   
