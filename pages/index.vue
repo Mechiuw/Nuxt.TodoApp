@@ -1,26 +1,26 @@
 <template>
-<main>
-  <div class="main-container-index">
-    <h1>TASK BOARD</h1>
-    <p>create list of tasks</p>
+  <main>
+    <div class="main-container-index">
+      <h1>TASK BOARD</h1>
+      <p>create list of tasks</p>
 
-    <input 
-    type="text" 
-    placeholder="insert task" 
-    v-model="newTask" 
-    @keypress.enter="addTask"
-    />
+      <input  
+      type="text" 
+      placeholder="insert task" 
+      v-model="newTask" 
+      @keypress.enter="addTask"
+      />
 
-    <button @click="addTask" class="btn btn-dark">Submit</button>
-  </div>
+      <button @click="addTask" class="btn btn-dark">Submit</button>
+    </div>
 
-  <div class="tasks">
-    <Task 
-    v-for="(task,i) in $store.tasks"
-    :key="i"
-    :task="task" />
-  </div>
-</main>
+    <div class="tasks">
+      <Task 
+      v-for="(task,i) in tasks"
+      :key="i"
+      :task="task" />
+    </div>
+  </main>
 </template>
 
 <script>
@@ -29,7 +29,7 @@ import Task from '../components/Task.vue';
 
 export default {
   components:{
-    Task : Task
+    Task
   }, 
   data(){
     return {
@@ -61,11 +61,5 @@ export default {
   }
   .main-container-index{
     text-align: center;
-  }
-  .tasks{
-    width: 20%;
-    height: 20%;
-    background-color: lightblue;
-    color: white;
   }
 </style>

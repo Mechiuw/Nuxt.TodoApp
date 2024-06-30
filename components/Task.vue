@@ -18,7 +18,7 @@
                 this.$store.commit('TOGGLE_TASK',this.task)
             },
             toggleDelete(){
-                this.$store.commit('DELETE_TASK',this.task)
+                this.$store.commit('REMOVE_TASK',this.task)
             }
         }
     }
