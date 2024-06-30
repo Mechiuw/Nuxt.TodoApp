@@ -10,6 +10,12 @@
         v-model="newTask" 
         @keypress.enter="addTask"
         />
+        <input  
+        type="text" 
+        placeholder="insert day" 
+        v-model="newDay" 
+        @keypress.enter="addTask"
+        />
         <button @click="addTask" class="btn btn-dark">Submit</button>
       </div>
   
@@ -32,17 +38,23 @@
     }, 
     data(){
       return {
-        newTask : ''
+        newTask : '',
+        newDay : ''
       }
     },
     computed:{
-      ...mapState(['tasks'])
+      ...mapState(['tasks']),
     },
     methods:{
       addTask(){
-        if(this.newTask){
-          this.$store.commit('ADD_TASK',this.newTask)
+        if(this.newTask && this.newDay){
+            const taskWithDay = {
+                content: this.newTask,
+                day : this.newDay,
+            }
+          this.$store.commit('ADD_TASK',taskWithDay)
           this.newTask = ''
+          this.newDay = ''
         }
       }
      }
@@ -50,5 +62,10 @@
   </script>
   
   <style>
-    
+    .main-container-index{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
   </style>

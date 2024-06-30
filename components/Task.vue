@@ -1,8 +1,8 @@
 <template>
     <div class="task-lists">
         <div :class="`task ${task.done ? 'completed' : ''}`">
-            <div class="content" >
-                {{ task.content }}
+            <div :style="{'text-decoration': task.done ? 'line-through' : 'none' }" class="content"> 
+                {{ task.content }} - {{ task.day }} 
             </div>
             <div class="button">
                 <button @click="toggleDone">{{ task.done ? 'Undo' : 'Done' }}</button>
@@ -14,17 +14,20 @@
 
 <script>
     export default {
-        props : ['task'], 
-        methods:{
-            toggleDone(){
-                this.$store.commit('TOGGLE_TASK',this.task)
+        props: ['task'], 
+        methods: {
+            toggleDone() {
+                this.$store.commit('TOGGLE_TASK', this.task);
             },
-            toggleDelete(){
-                this.$store.commit('REMOVE_TASK',this.task)
+            toggleDelete() {
+                this.$store.commit('REMOVE_TASK', this.task);
             }
         }
     }
 </script>
-<style>
 
+<style scoped>
+.completed .content {
+    text-decoration: underline;
+}
 </style>
